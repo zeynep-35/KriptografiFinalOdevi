@@ -1,4 +1,4 @@
-Bu proje, ASP.NET Core MVC kullanılarak geliştirilmiş bir şifreleme uygulamasıdır. Üniversite dersi kapsamında hazırlanan bu final projesi, temel kriptografi algoritmalarının web arayüzü üzerinden nasıl uygulanabileceğini göstermeyi amaçlamaktadır.
+![image](https://github.com/user-attachments/assets/42ef25e1-e293-4313-b414-914c24b4aebe)Bu proje, ASP.NET Core MVC kullanılarak geliştirilmiş bir şifreleme uygulamasıdır. Üniversite dersi kapsamında hazırlanan bu final projesi, temel kriptografi algoritmalarının web arayüzü üzerinden nasıl uygulanabileceğini göstermeyi amaçlamaktadır.
 
 🚀 Özellikler
 🔑 RSA Anahtar Üretimi
@@ -23,6 +23,8 @@ Bootstrap 5 ile geliştirilmiş responsive tasarım.
 
 🛠️ Kullanılan Teknolojiler
 ASP.NET Core MVC
+![image](https://github.com/user-attachments/assets/e8f21f08-0208-4ae5-8ad3-e1d2cdd62db3)
+
 
 C# 10
 
