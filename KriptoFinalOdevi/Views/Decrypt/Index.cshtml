@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "RSA Şifre Çöz";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+                <h2 class="text-center mb-4 text-warning">🔓 RSA Şifre Çöz</h2>
+                <p class="text-center text-muted">Aşağıya şifrelenmiş metni ve private key'inizi girerek çözümleyin.</p>
+
+                <form method="post" asp-action="Index">
+                    <!-- Şifreli Metin -->
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Şifrelenmiş Metin (Base64):</label>
+                        <textarea name="encryptedBase64" class="form-control" rows="4" required placeholder="Şifrelenmiş base64 veriyi buraya yapıştırın..."></textarea>
+                    </div>
+
+                    <!-- Private Key -->
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Private Key (Base64):</label>
+                        <textarea name="privateKeyBase64" class="form-control" rows="4" required placeholder="MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAo..."></textarea>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-warning btn-lg shadow-sm">Çöz</button>
+                    </div>
+                </form>
+
+                @if (ViewBag.DecryptedText != null)
+                {
+                    <div class="mt-4">
+                        <h5 class="text-success d-flex justify-content-between">
+                            Çözülmüş Metin:
+                            <button class="btn btn-outline-success btn-sm" onclick="copyToClipboard('decryptedResult')">📋 Kopyala</button>
+                        </h5>
+                        <pre class="key-box" id="decryptedResult">@ViewBag.DecryptedText</pre>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .key-box {
+        background: #f8f9fa;
+        border: 1px solid #ced4da;
+        padding: 15px;
+        border-radius: 10px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.85rem;
+        overflow-x: auto;
+        max-height: 300px;
+        white-space: pre-wrap;
+    }
+
+    .card:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease-in-out;
+    }
+</style>
+
+<script>
+    function copyToClipboard(elementId) {
+        var text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(function () {
+            alert("Metin panoya kopyalandı!");
+        }, function () {
+            alert("Kopyalama başarısız.");
+        });
+    }
+</script>
