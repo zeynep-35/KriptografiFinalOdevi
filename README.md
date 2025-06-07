@@ -1,3 +1,11 @@
+Projem, kullanıcıların metin veya dosyaları güvenli şekilde şifrelemesini ve çözmesini sağlayan bir veri şifreleme uygulamasıdır. RSA algoritması ile şifreleme ve şifre çözme işlemleri yapılırken, SHA256 algoritması ile metin veya dosyaların özet (hash) değeri oluşturulmaktadır. Amaç; kullanıcılara güvenli, modern ve kullanıcı dostu bir arayüzle kriptografik işlemleri kolayca gerçekleştirebilecekleri bir platform sunmaktır.
+
+
+
+
+
+
+
 ## ANA SAYFA
 
 ![image](https://github.com/user-attachments/assets/183a2867-a8ef-458e-b0b1-7c6563fe8d81)
