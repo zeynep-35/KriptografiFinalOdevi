@@ -6,6 +6,7 @@ Projem, kullanıcıların metin veya dosyaları güvenli şekilde şifrelemesini
 
 
 
+
 ## ANA SAYFA
 
 ![image](https://github.com/user-attachments/assets/183a2867-a8ef-458e-b0b1-7c6563fe8d81)
@@ -61,6 +62,45 @@ SHA256 Hashleme Aracı'nda veri türü olarak "Dosya" seçildiğinde, kullanıc�
 ![image](https://github.com/user-attachments/assets/049c5574-ed80-4192-907e-fa563a22c63f)
 ![image](https://github.com/user-attachments/assets/0d725cb0-ba76-43e5-b01d-288d769bb162)
 ![image](https://github.com/user-attachments/assets/d0e9b919-603f-481d-8604-d6b3c43030fe)
+
+
+## ⚙️ Kullanılan Teknolojiler
+
+### 🧠 Kriptografi Algoritmaları
+- **RSA (Rivest–Shamir–Adleman)**  
+  - Public ve Private key üretimi  
+  - Metin şifreleme ve çözme işlemleri
+- **SHA256 (Secure Hash Algorithm 256)**  
+  - Metin veya dosya üzerinden SHA256 hash değeri oluşturma
+
+### 🖥️ Geliştirme Ortamı & Altyapı
+- **ASP.NET Core MVC**  
+  - Katmanlı mimari (Controller - View - Model)  
+  - Razor View Engine ile dinamik HTML sayfaları
+- **C# (.NET 6+)**  
+  - `System.Security.Cryptography` ile RSA ve SHA256 işlemleri  
+  - Backend işlem ve dosya yönetimi
+
+### 🎨 Arayüz ve Stil (UI/UX)
+- **HTML5 & CSS3**  
+  - Özel kart tasarımları ve neon temalı arka plan
+- **Bootstrap 5**  
+  - Responsive yapı, form elemanları ve butonlar
+- **Animate.css**  
+  - Giriş animasyonları ve kullanıcı etkileşimi
+- **Özel CSS Sınıfları**  
+  - `.text-neon`, `.cyber-card`, `.btn-outline-neon` gibi stil sınıfları
+
+### 🗃️ Dosya İşlemleri
+- Kullanıcının .txt vb. dosya seçmesine olanak tanıma  
+- Dosya içeriğinin SHA256 algoritması ile özetlenmesi
+
+### 🔁 Kullanıcı Deneyimi Özellikleri
+- “Kopyala” butonları ile kolay çıktı alma  
+- “Geri Dön” butonları ile sayfalar arası akış  
+- Dosya seçilmemesi durumunda uyarı mesajları
+
+
 
 
 
