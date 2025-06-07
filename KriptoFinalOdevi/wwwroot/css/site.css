@@ -1,22 +1,144 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Genel yapý */
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #000010;
+    color: #ffffff;
+}
+
+/* Kozmik Arka Plan */
+#cosmic-background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 30% 30%, #1a1a80, transparent 60%), radial-gradient(circle at 70% 70%, #aa00ff, transparent 60%), radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05), transparent 80%);
+    z-index: 0;
+    animation: cosmicGradient 40s ease-in-out infinite;
+}
+
+@keyframes cosmicGradient {
+    0%, 100% {
+        background-position: 30% 30%, 70% 70%, 50% 50%;
+    }
+
+    50% {
+        background-position: 40% 40%, 60% 60%, 55% 55%;
+    }
+}
+
+/* Yýldýzlar */
+canvas.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Kilit Sistemi */
+#lock-system {
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    z-index: 1;
+}
+
+.lock-core {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #ffc107, #ff9800);
+    border-radius: 50%;
+    position: absolute;
+    top: 160px;
+    left: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: #000;
+    box-shadow: 0 0 30px #ffcc00;
+}
+
+/* Anahtar orbit yapýsý */
+.key-orbit {
+    position: absolute;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: orbitRotation 20s linear infinite;
+}
+
+.key-icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: #00ffff;
+}
+
+.orbit-1 {
+    width: 140px;
+    height: 140px;
+    top: 130px;
+    left: 130px;
+}
+
+.orbit-2 {
+    width: 200px;
+    height: 200px;
+    top: 100px;
+    left: 100px;
+    animation-duration: 30s;
+}
+
+.orbit-3 {
+    width: 260px;
+    height: 260px;
+    top: 70px;
+    left: 70px;
+    animation-duration: 45s;
+}
+
+@keyframes orbitRotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Navbar ve footer */
+.navbar-custom {
+    background: rgba(10, 15, 44, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand {
+    color: #ffccff !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-shadow: 0 0 6px #ff00ff;
+}
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #c9c9ff;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+
+.layout-content {
+    position: relative;
+    z-index: 2;
 }

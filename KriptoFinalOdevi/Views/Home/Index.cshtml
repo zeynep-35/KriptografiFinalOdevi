@@ -2,155 +2,202 @@
     ViewData["Title"] = "Ana Sayfa";
 }
 
-<!-- Arka Plan -->
-<div class="hero-bg">
-    <div class="container py-5 text-center text-white">
-        <h1 class="display-3 fw-bold text-gradient">🔐 Kriptografi Uygulamasına Hoş Geldiniz</h1>
-        <p class="lead">RSA ve SHA256 işlemlerini modern bir arayüzle güvenle gerçekleştirin.</p>
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container text-center text-white d-flex flex-column align-items-center justify-content-center py-5">
+        <h1 class="display-3 fw-bold text-neon mb-3 animate__animated animate__fadeIn">🔒 GÜVENLİ VERİ ŞİFRELEME</h1>
+        <p class="lead text-light mb-0 animate__animated animate__fadeIn animate__delay-1s">
+            Verilerinizi RSA ve SHA256 ile modern bir arayüzde güvenle koruyun.
+        </p>
     </div>
 </div>
 
-<!-- Kartlar Bölümü -->
-<div class="container mt-5 mb-5">
-    <div class="row justify-content-center g-4">
+<!-- Features Section -->
+<section id="features" class="container pt-4 pb-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 justify-content-center">
 
         <!-- RSA Anahtar Üret -->
-        <div class="col-md-6 col-lg-3">
-            <div class="glass-card">
-                <div class="icon-circle bg-primary text-white mb-3">
-                    🔑
-                </div>
-                <h5>RSA Anahtar Üret</h5>
-                <p class="text-muted">Yeni bir public/private anahtar çifti oluşturun.</p>
-                <a asp-controller="GenerateKey" asp-action="Index" class="btn btn-outline-primary w-100 mt-auto">Oluştur</a>
+        <div class="col">
+            <div class="cyber-card h-100 animate__animated animate__zoomIn">
+                <div class="icon-circle bg-gradient-primary mb-3">🔑</div>
+                <h5 class="text-white fw-bold">RSA Anahtar Üret</h5>
+                <p class="text-muted">Güvenli bir public/private anahtar çifti oluşturun.</p>
+                <a asp-controller="GenerateKey" asp-action="Index" class="btn btn-outline-neon w-100 mt-auto">Oluştur</a>
             </div>
         </div>
 
         <!-- RSA Şifrele -->
-        <div class="col-md-6 col-lg-3">
-            <div class="glass-card">
-                <div class="icon-circle bg-success text-white mb-3">
-                    🔐
-                </div>
-                <h5>RSA Şifrele</h5>
-                <p class="text-muted">Metninizi RSA ile güvenli hale getirin.</p>
-                <a asp-controller="Encrypt" asp-action="Index" class="btn btn-outline-success w-100 mt-auto">Şifrele</a>
+        <div class="col">
+            <div class="cyber-card h-100 animate__animated animate__zoomIn animate__delay-1s">
+                <div class="icon-circle bg-gradient-success mb-3">🔐</div>
+                <h5 class="text-white fw-bold">RSA Şifrele</h5>
+                <p class="text-muted">Verilerinizi RSA ile güvenli bir şekilde şifreleyin.</p>
+                <a asp-controller="Encrypt" asp-action="Index" class="btn btn-outline-neon w-100 mt-auto">Şifrele</a>
             </div>
         </div>
 
         <!-- RSA Şifre Çöz -->
-        <div class="col-md-6 col-lg-3">
-            <div class="glass-card">
-                <div class="icon-circle bg-warning text-white mb-3">
-                    🔓
-                </div>
-                <h5>RSA Şifre Çöz</h5>
-                <p class="text-muted">RSA ile şifrelenmiş veriyi çözün.</p>
-                <a asp-controller="Decrypt" asp-action="Index" class="btn btn-outline-warning w-100 mt-auto">Çöz</a>
+        <div class="col">
+            <div class="cyber-card h-100 animate__animated animate__zoomIn animate__delay-2s">
+                <div class="icon-circle bg-gradient-warning mb-3">🔓</div>
+                <h5 class="text-white fw-bold">RSA Şifre Çöz</h5>
+                <p class="text-muted">RSA ile şifrelenmiş verilerinizi kolayca çözün.</p>
+                <a asp-controller="Decrypt" asp-action="Index" class="btn btn-outline-neon w-100 mt-auto">Çöz</a>
             </div>
         </div>
 
         <!-- SHA256 -->
-        <div class="col-md-6 col-lg-3">
-            <div class="glass-card">
-                <div class="icon-circle bg-dark text-white mb-3">
-                    🧮
-                </div>
-                <h5>SHA256 Özeti</h5>
-                <p class="text-muted">Verinin SHA256 özetini hızlıca alın.</p>
-                <a asp-controller="SHA256" asp-action="Index" class="btn btn-outline-dark w-100 mt-auto">Oluştur</a>
+        <div class="col">
+            <div class="cyber-card h-100 animate__animated animate__zoomIn animate__delay-3s">
+                <div class="icon-circle bg-gradient-dark mb-3">🧮</div>
+                <h5 class="text-white fw-bold">SHA256 Özeti</h5>
+                <p class="text-muted">Verilerinizin SHA256 özetini anında alın.</p>
+                <a asp-controller="SHA256" asp-action="Index" class="btn btn-outline-neon w-100 mt-auto">Oluştur</a>
             </div>
         </div>
-
     </div>
-</div>
+</section>
 
-<!-- Özel Stil -->
+<!-- Styles -->
 <style>
-    .hero-bg {
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        color: white;
-        padding-top: 60px;
-        padding-bottom: 60px;
-        border-bottom-left-radius: 40px;
-        border-bottom-right-radius: 40px;
+    body {
+        background: #0a0a0a;
+        color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
     }
 
-    .text-gradient {
-        background: linear-gradient(to right, #00c6ff, #0072ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    .hero-section {
+        background: linear-gradient(135deg, #1e1e2f, #2a2a4a, #0a0a0a);
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
     }
 
-    .glass-card {
-        background: rgba(255, 255, 255, 0.07);
-        border-radius: 16px;
-        padding: 30px 20px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(10px);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 20%, rgba(0, 255, 255, 0.15), transparent 70%);
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+    .text-neon-black {
+        color: #1a1a1a;
+        text-shadow: 0 0 5px #333, 0 0 10px #222, 0 0 20px #111;
+        font-weight: 700;
+    }
+
+
+    .cyber-card {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
         text-align: center;
-        height: 100%;
         display: flex;
         flex-direction: column;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
-        .glass-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+        .cyber-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 50px rgba(0, 255, 255, 0.3);
         }
 
     .icon-circle {
-        width: 64px;
-        height: 64px;
-        font-size: 32px;
+        width: 70px;
+        height: 70px;
+        font-size: 35px;
         border-radius: 50%;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        animation: floatIcon 3s ease-in-out infinite;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto 10px;
+        animation: pulse 2s ease-in-out infinite;
     }
 
-    @@keyframes floatIcon {
-        0%
+        .icon-circle:hover {
+            transform: scale(1.15);
+        }
 
-    {
-        transform: translateY(0px);
+    .bg-gradient-primary {
+        background: linear-gradient(45deg, #007bff, #00d4ff);
     }
 
-    50% {
-        transform: translateY(-6px);
+    .bg-gradient-success {
+        background: linear-gradient(45deg, #28a745, #00ff88);
     }
 
-    100% {
-        transform: translateY(0px);
+    .bg-gradient-warning {
+        background: linear-gradient(45deg, #ffc107, #ffeb3b);
     }
 
+    .bg-gradient-dark {
+        background: linear-gradient(45deg, #343a40, #6c757d);
     }
 
-    .btn {
-        border-radius: 12px;
-        font-weight: 500;
+    .btn-outline-neon {
+        border: 2px solid #00f2ff;
+        color: #00f2ff;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        padding: 8px 15px;
     }
 
-    .card-title {
-        font-weight: bold;
+        .btn-outline-neon:hover {
+            background: #00f2ff;
+            color: #0a0a0a;
+            box-shadow: 0 0 12px #00f2ff;
+        }
+
+    @@keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.6);
+        }
+
+        70% {
+            box-shadow: 0 0 0 12px rgba(0, 242, 255, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(0, 242, 255, 0);
+        }
     }
 
-    @@media (max-width: 576px) {
-        .glass-card
 
-    {
-        padding: 20px 15px;
+    @@media (max-width: 768px) {
+        .hero-section .text-neon {
+            font-size: 1.8rem;
+        }
+
+        .hero-section .lead {
+            font-size: 1rem;
+        }
+
+        .cyber-card {
+            padding: 15px;
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+        }
     }
 
-    .icon-circle {
-        width: 48px;
-        height: 48px;
-        font-size: 24px;
-    }
-
-    }
 </style>
+
+<!-- Include Animate.css for animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />

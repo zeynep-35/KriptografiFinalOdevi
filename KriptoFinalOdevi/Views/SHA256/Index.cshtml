@@ -3,42 +3,54 @@
 }
 
 <div class="container py-5">
-    <h2 class="text-center mb-4">📛 SHA256 Hashleme Aracı</h2>
-    <p class="text-center text-muted mb-4">SHA256 ile metin veya dosya hashlemesi yapın.</p>
-
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <form asp-controller="Sha256" asp-action="Index" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label">Veri Türü:</label>
-                    <select class="form-select" name="dataType" id="dataType" onchange="toggleFields()">
-                        <option value="text">Metin</option>
-                        <option value="file">Dosya</option>
-                    </select>
-                </div>
+        <div class="col-lg-8">
+            <div class="glass-card p-5 animate__animated animate__fadeIn">
+                <h2 class="text-center mb-4 text-neon">📛 SHA256 Hashleme Aracı</h2>
+                <p class="text-center text-light mb-4">SHA256 ile metin veya dosya hashlemesi yapın.</p>
 
-                <div class="mb-3" id="textInput">
-                    <label for="inputText" class="form-label">Metin:</label>
-                    <textarea class="form-control" id="inputText" name="inputText" rows="4" placeholder="Metni buraya yazın..."></textarea>
-                </div>
+                <form asp-controller="Sha256" asp-action="Index" method="post" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold text-light">Veri Türü:</label>
+                        <select class="form-select dark-input" name="dataType" id="dataType" onchange="toggleFields()">
+                            <option value="text">Metin</option>
+                            <option value="file">Dosya</option>
+                        </select>
+                    </div>
 
-                <div class="mb-3 d-none" id="fileInput">
-                    <label for="inputFile" class="form-label">Dosya:</label>
-                    <input type="file" class="form-control" id="inputFile" name="inputFile" />
-                </div>
+                    <div class="mb-4" id="textInput">
+                        <label for="inputText" class="form-label fw-semibold text-light">Metin:</label>
+                        <textarea class="form-control dark-input" id="inputText" name="inputText" rows="4" placeholder="Metni buraya yazın..."></textarea>
+                    </div>
 
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-dark">SHA256 Hashle</button>
-                </div>
-            </form>
+                    <div class="mb-4 d-none" id="fileInput">
+                        <label for="inputFile" class="form-label fw-semibold text-light">Dosya:</label>
+                        <input type="file" class="form-control dark-input" id="inputFile" name="inputFile" />
+                    </div>
 
-            @if (ViewBag.HashResult != null)
-            {
-                <div class="mt-4">
-                    <label class="form-label">SHA256 Hash Sonucu:</label>
-                    <textarea class="form-control bg-light text-dark" rows="3" readonly>@ViewBag.HashResult</textarea>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-outline-neon btn-lg">SHA256 Hashle</button>
+                    </div>
+                </form>
+
+                @if (ViewBag.HashResult != null)
+                {
+                    <div class="mt-5">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="form-label text-success mb-0">✅ SHA256 Hash Sonucu:</label>
+                            <button class="btn btn-outline-success btn-sm" onclick="copyToClipboard('hashResult')">📋 Kopyala</button>
+                        </div>
+                        <pre class="key-box" id="hashResult">@ViewBag.HashResult</pre>
+                    </div>
+                }
+
+                <!-- Geri Dön Butonu -->
+                <div class="mt-4 text-center">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-neon btn-sm px-4">
+                        🔙 Geri Dön
+                    </a>
                 </div>
-            }
+            </div>
         </div>
     </div>
 </div>
@@ -50,12 +62,87 @@
             document.getElementById("textInput").classList.toggle("d-none", type !== "text");
             document.getElementById("fileInput").classList.toggle("d-none", type !== "file");
         }
+
+        function copyToClipboard(elementId) {
+            var text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(function () {
+                alert("Hash değeri panoya kopyalandı!");
+            }, function () {
+                alert("Kopyalama başarısız.");
+            });
+        }
     </script>
 }
 
+<!-- Stil -->
 <style>
-    textarea::placeholder {
-        color: #999;
-        font-style: italic;
+    body {
+        background-color: #0a0a0a;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .glass-card {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        box-shadow: 0 8px 40px rgba(255, 234, 0, 0.08);
+        color: white;
+    }
+
+    .text-neon {
+        color: #ffea00;
+        text-shadow: 0 0 8px #ffea00, 0 0 15px #ffea00, 0 0 30px #ffea00;
+        font-weight: 700;
+    }
+
+    .btn-outline-neon {
+        border: 2px solid #ffea00;
+        color: #ffea00;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        padding: 10px 20px;
+    }
+
+        .btn-outline-neon:hover {
+            background-color: #ffea00;
+            color: #0a0a0a;
+            box-shadow: 0 0 12px #ffea00;
+        }
+
+    .dark-input {
+        background-color: #1c1c1c;
+        color: #ffea00;
+        border: 1px solid #444;
+    }
+
+        .dark-input::placeholder {
+            color: #888;
+        }
+
+        .dark-input:focus {
+            background-color: #222;
+            color: #ffea00;
+            border-color: #ffea00;
+            box-shadow: 0 0 0 0.2rem rgba(255, 234, 0, 0.25);
+        }
+
+    .key-box {
+        background: #111;
+        color: #fff700;
+        border: 1px solid #333;
+        padding: 15px;
+        border-radius: 12px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.85rem;
+        overflow-x: auto;
+        max-height: 300px;
+        white-space: pre-wrap;
+        box-shadow: inset 0 0 10px rgba(255, 234, 0, 0.1);
     }
 </style>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />

@@ -1,49 +1,123 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - KriptoFinalOdevi</title>
+    <title>@ViewData["Title"] - Güvenli Şifreleme</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/KriptoFinalOdevi.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KriptoFinalOdevi</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <!-- Kozmik Arka Plan -->
+    <div id="cosmic-background"></div>
+    <canvas class="stars"></canvas>
+
+    <!-- Kilit ve Anahtar Sistemi -->
+    <div id="lock-system">
+        <div class="lock-core">
+            <i class="fas fa-lock"></i>
+        </div>
+
+        <div class="key-orbit orbit-1">
+            <div class="key-icon" style="transform: translate(-50%, -50%) rotate(0deg) translateX(70px);">
+                <i class="fas fa-key"></i>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </div>
+        <div class="key-orbit orbit-2">
+            <div class="key-icon" style="transform: translate(-50%, -50%) rotate(0deg) translateX(100px);">
+                <i class="fas fa-key"></i>
+            </div>
+        </div>
+        <div class="key-orbit orbit-3">
+            <div class="key-icon" style="transform: translate(-50%, -50%) rotate(0deg) translateX(130px);">
+                <i class="fas fa-key"></i>
+            </div>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - KriptoFinalOdevi - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    <!-- İçerik -->
+    <div class="layout-content d-flex flex-column min-vh-100">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-custom shadow-sm">
+                <div class="container justify-content-center">
+                    <span class="navbar-brand"></span>
+                </div>
+            </nav>
+        </header>
+
+        <main role="main" class="flex-fill container py-4">
+            @RenderBody()
+        </main>
+
+        <footer class="footer mt-auto text-center py-3">
+            &copy; 2025 - Güvenli Veri Şifreleme Aracı
+        </footer>
+    </div>
+
+    <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Yıldız Efekti -->
+    <script>
+        const canvas = document.querySelector('.stars');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let stars = [];
+        class Star {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 1.2;
+                this.alpha = Math.random();
+                this.speed = Math.random() * 0.2;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255,255,255," + this.alpha + ")";
+                ctx.fill();
+            }
+
+            update() {
+                this.y += this.speed;
+                if (this.y > canvas.height) {
+                    this.y = 0;
+                    this.x = Math.random() * canvas.width;
+                }
+                this.draw();
+            }
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < 200; i++) {
+                stars.push(new Star());
+            }
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => star.update());
+            requestAnimationFrame(animateStars);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        });
+
+        initStars();
+        animateStars();
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

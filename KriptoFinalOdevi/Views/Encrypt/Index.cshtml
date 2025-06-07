@@ -5,38 +5,45 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card shadow-lg border-0 rounded-4 p-4">
-                <h2 class="text-center mb-4 text-success">🔐 RSA Şifreleme</h2>
-                <p class="text-center text-muted">RSA public key'inizi girin ve şifrelenecek metni aşağıya yazın.</p>
+            <div class="glass-card p-5 animate__animated animate__fadeIn">
+                <h2 class="text-center mb-4 text-neon">🔐 RSA Şifreleme</h2>
+                <p class="text-center text-light">RSA public key'inizi girin ve şifrelenecek metni aşağıya yazın.</p>
 
                 <form method="post" asp-action="Index">
                     <!-- Base64 Public Key -->
                     <div class="mb-4">
-                        <label class="form-label fw-semibold">Public Key (Base64 formatında):</label>
-                        <textarea name="publicKeyBase64" class="form-control" rows="4" required placeholder="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK..."></textarea>
+                        <label class="form-label fw-semibold text-light">Public Key (Base64 formatında):</label>
+                        <textarea name="publicKeyBase64" class="form-control dark-input" rows="4" required placeholder="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK..."></textarea>
                     </div>
 
                     <!-- Metin Girişi -->
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Şifrelenecek Metin:</label>
-                        <textarea name="inputText" class="form-control" rows="3" required placeholder="Şifrelenecek metni girin..."></textarea>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold text-light">Şifrelenecek Metin:</label>
+                        <textarea name="inputText" class="form-control dark-input" rows="3" required placeholder="Şifrelenecek metni girin..."></textarea>
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-success btn-lg shadow-sm">Şifrele</button>
+                        <button type="submit" class="btn btn-outline-neon btn-lg">Şifrele</button>
                     </div>
                 </form>
 
                 @if (ViewBag.EncryptedText != null)
                 {
-                    <div class="mt-4">
-                        <h5 class="text-primary d-flex justify-content-between">
-                            Şifrelenmiş Metin:
-                            <button class="btn btn-outline-primary btn-sm" onclick="copyToClipboard('encryptedResult')">📋 Kopyala</button>
-                        </h5>
+                    <div class="mt-5">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="text-primary mb-0">📦 Şifrelenmiş Metin:</h5>
+                            <button class="btn btn-sm btn-outline-primary" onclick="copyToClipboard('encryptedResult')">📋 Kopyala</button>
+                        </div>
                         <pre class="key-box" id="encryptedResult">@ViewBag.EncryptedText</pre>
                     </div>
                 }
+
+                <!-- Geri Dön Butonu -->
+                <div class="mt-4 text-center">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-neon btn-sm px-4">
+                        🔙 Geri Dön
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -44,22 +51,72 @@
 
 <!-- CSS -->
 <style>
-    .key-box {
-        background: #f8f9fa;
-        border: 1px solid #ced4da;
-        padding: 15px;
+    body {
+        background-color: #0a0a0a;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .glass-card {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        box-shadow: 0 8px 40px rgba(255, 221, 0, 0.1);
+        color: white;
+    }
+
+    .text-neon {
+        color: #ffdd00;
+        text-shadow: 0 0 8px #ffdd00, 0 0 15px #ffdd00, 0 0 30px #ffdd00;
+        font-weight: 700;
+    }
+
+    .btn-outline-neon {
+        border: 2px solid #ffdd00;
+        color: #ffdd00;
         border-radius: 10px;
-        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        padding: 10px 20px;
+    }
+
+        .btn-outline-neon:hover {
+            background-color: #ffdd00;
+            color: #0a0a0a;
+            box-shadow: 0 0 12px #ffdd00;
+        }
+
+    .key-box {
+        background: #111;
+        color: #ffdd00;
+        border: 1px solid #333;
+        padding: 15px;
+        border-radius: 12px;
+        font-family: 'Courier New', Courier, monospace;
         font-size: 0.85rem;
         overflow-x: auto;
         max-height: 300px;
         white-space: pre-wrap;
+        box-shadow: inset 0 0 10px rgba(255, 221, 0, 0.1);
     }
 
-    .card:hover {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        transition: all 0.3s ease-in-out;
+    .dark-input {
+        background-color: #1c1c1c;
+        color: #ffdd00;
+        border: 1px solid #444;
     }
+
+        .dark-input::placeholder {
+            color: #888;
+        }
+
+        .dark-input:focus {
+            background-color: #222;
+            color: #ffdd00;
+            border-color: #ffdd00;
+            box-shadow: 0 0 0 0.2rem rgba(255, 221, 0, 0.25);
+        }
 </style>
 
 <!-- JS -->
@@ -67,9 +124,12 @@
     function copyToClipboard(elementId) {
         var text = document.getElementById(elementId).innerText;
         navigator.clipboard.writeText(text).then(function () {
-            alert("Şifreli metin kopyalandı!");
+            alert("Şifreli metin panoya kopyalandı!");
         }, function () {
             alert("Kopyalama başarısız.");
         });
     }
 </script>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />

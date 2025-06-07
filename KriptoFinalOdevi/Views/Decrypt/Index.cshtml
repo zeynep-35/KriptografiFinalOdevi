@@ -5,69 +5,136 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card shadow-lg border-0 rounded-4 p-4">
-                <h2 class="text-center mb-4 text-warning">🔓 RSA Şifre Çöz</h2>
-                <p class="text-center text-muted">Aşağıya şifrelenmiş metni ve private key'inizi girerek çözümleyin.</p>
+            <div class="glass-card p-5 animate__animated animate__fadeIn">
+                <h2 class="text-center mb-4 text-neon-warning">🔓 RSA Şifre Çöz</h2>
+                <p class="text-center text-light">Aşağıya şifrelenmiş metni ve private key'inizi girerek çözümleyin.</p>
 
                 <form method="post" asp-action="Index">
                     <!-- Şifreli Metin -->
                     <div class="mb-4">
-                        <label class="form-label fw-semibold">Şifrelenmiş Metin (Base64):</label>
-                        <textarea name="encryptedBase64" class="form-control" rows="4" required placeholder="Şifrelenmiş base64 veriyi buraya yapıştırın..."></textarea>
+                        <label class="form-label fw-semibold text-light">Şifrelenmiş Metin (Base64):</label>
+                        <textarea name="encryptedBase64" class="form-control dark-input" rows="4" required placeholder="Şifrelenmiş base64 veriyi buraya yapıştırın..."></textarea>
                     </div>
 
                     <!-- Private Key -->
                     <div class="mb-4">
-                        <label class="form-label fw-semibold">Private Key (Base64):</label>
-                        <textarea name="privateKeyBase64" class="form-control" rows="4" required placeholder="MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAo..."></textarea>
+                        <label class="form-label fw-semibold text-light">Private Key (Base64):</label>
+                        <textarea name="privateKeyBase64" class="form-control dark-input" rows="4" required placeholder="MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAo..."></textarea>
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-warning btn-lg shadow-sm">Çöz</button>
+                        <button type="submit" class="btn btn-outline-neon btn-lg">Çöz</button>
                     </div>
                 </form>
 
                 @if (ViewBag.DecryptedText != null)
                 {
-                    <div class="mt-4">
-                        <h5 class="text-success d-flex justify-content-between">
-                            Çözülmüş Metin:
-                            <button class="btn btn-outline-success btn-sm" onclick="copyToClipboard('decryptedResult')">📋 Kopyala</button>
-                        </h5>
+                    <div class="mt-5">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="text-success mb-0">📤 Çözülmüş Metin:</h5>
+                            <button class="btn btn-sm btn-outline-success" onclick="copyToClipboard('decryptedResult')">📋 Kopyala</button>
+                        </div>
                         <pre class="key-box" id="decryptedResult">@ViewBag.DecryptedText</pre>
                     </div>
                 }
+
+                <!-- Geri Dön Butonu -->
+                <div class="mt-4 text-center">
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-neon btn-sm px-4">
+                        🔙 Geri Dön
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Stil -->
 <style>
-    .key-box {
-        background: #f8f9fa;
-        border: 1px solid #ced4da;
-        padding: 15px;
+    body {
+        background-color: #0a0a0a;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .glass-card {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        box-shadow: 0 8px 40px rgba(255, 255, 0, 0.05);
+        color: white;
+    }
+
+    .text-neon-warning {
+        color: #ffc107;
+        text-shadow: 0 0 5px #ffc107, 0 0 15px #ffc107;
+        font-weight: 700;
+    }
+
+    .btn-outline-neon {
+        border: 2px solid #00f2ff;
+        color: #00f2ff;
         border-radius: 10px;
-        font-family: "Courier New", Courier, monospace;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        padding: 10px 20px;
+    }
+
+        .btn-outline-neon:hover {
+            background-color: #00f2ff;
+            color: #0a0a0a;
+            box-shadow: 0 0 12px #00f2ff;
+        }
+
+    .dark-input {
+        background-color: #1c1c1c;
+        color: #00ffff;
+        border: 1px solid #444;
+    }
+
+        .dark-input::placeholder {
+            color: #888;
+        }
+
+        .dark-input:focus {
+            background-color: #222;
+            color: #00ffff;
+            border-color: #00f2ff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 255, 255, 0.25);
+        }
+
+    .key-box {
+        background: #111;
+        color: #00ffcc;
+        border: 1px solid #333;
+        padding: 15px;
+        border-radius: 12px;
+        font-family: 'Courier New', Courier, monospace;
         font-size: 0.85rem;
         overflow-x: auto;
         max-height: 300px;
         white-space: pre-wrap;
+        box-shadow: inset 0 0 10px rgba(255, 255, 0, 0.1);
     }
 
-    .card:hover {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        transition: all 0.3s ease-in-out;
+    button:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.25rem rgba(0, 255, 255, 0.25);
     }
 </style>
 
+<!-- JavaScript -->
 <script>
     function copyToClipboard(elementId) {
         var text = document.getElementById(elementId).innerText;
         navigator.clipboard.writeText(text).then(function () {
-            alert("Metin panoya kopyalandı!");
+            alert("Çözülmüş metin panoya kopyalandı!");
         }, function () {
-            alert("Kopyalama başarısız.");
+            alert("Kopyalama başarısız oldu.");
         });
     }
 </script>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
