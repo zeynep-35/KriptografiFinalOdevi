@@ -36,9 +36,11 @@ SHA256 İLE HASHLEME ARACI
 SHA-256 ile Hashleme Aracı’nda iki farklı veri türü seçeneği sunulmaktadır:
 
 Metin
+
 Kullanıcı bu seçeneği seçtiğinde, doğrudan metin girişi yapabilir. Örneğin, “ZEYNEP” yazıldığında sistem bu metni SHA-256 algoritmasıyla işleyerek hash sonucunu üretir ve ekranda gösterir. Bu yöntem kısa ve hızlı veri girişi için uygundur.
 
 Dosya 
+
 Dosya seçeneği seçildiğinde, kullanıcı yerel cihazından bir dosya yükleyerek o dosyanın içeriğini SHA-256 ile hashleyebilir. Bu özellik özellikle dosya bütünlüğü ve doğrulama amaçlı kullanılır.
 
 İkinci görselde görüldüğü gibi metin girilip "SHA256 Hashle" butonuna basıldığında, alt kısımda hash sonucu kullanıcıya sunulmakta ve “Kopyala” butonuyla kolayca alınabilmektedir. 
