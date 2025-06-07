@@ -28,7 +28,7 @@ Alt kısımda, “Çözülmüş Metin” alanı görünür hâle gelmiş ve giri
 
 
 
-# SHA256 İLE HASHLEME ARACI
+## SHA256 İLE HASHLEME ARACI
 ![image](https://github.com/user-attachments/assets/cd9d9d4c-0796-4000-b414-2e0b7b0aa2ec)
 
 ![image](https://github.com/user-attachments/assets/d2f8bd04-383c-4c0f-ab81-3270b064db39)
